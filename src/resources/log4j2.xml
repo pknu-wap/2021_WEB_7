@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" name="Platform" packages="">
+	<Appenders>
+		<File name="file" fileName="/opt/tomcat/logs/system_out.log">
+			<PatternLayout charset="UTF-8" pattern="%d %5p [%c] %m%n"/>
+		</File>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout charset="UTF-8" pattern="%d %5p [%c] %m%n"/>
+		</Console>
+	</Appenders>
+	<Loggers>
+		<logger name="log4jdbc.log4j2" level="error" additivity="false">
+			<appender-ref ref="console" />
+			<appender-ref ref="file" />
+		</logger>
+
+		<Logger name="jdbc.sqlonly" level="error" />
+		<Logger name="jdbc.sqltiming" level="info" />
+		<Logger name="jdbc.audit" level="error" />
+		<Logger name="jdbc.resultset" level="error" />
+		<Logger name="jdbc.resultsettable" level="info" />
+		<Logger name="jdbc.connection" level="error" />
+
+		<!-- Query Loggers -->
+		<!--<logger name="jdbc.sqlonly" level="INFO" additivity="false">>
+			<appender-ref ref="console" />
+		</logger>-->
+
+		<!--<logger name="jdbc.resultsettable" level="INFO" additivity="false">>
+			<appender-ref ref="console" />
+		</logger>-->
+
+		<!-- log SQL with timing information, post execution -->
+		<!--<Logger name="jdbc.sqltiming" level="INFO" additivity="false">
+			<AppenderRef ref="console"/>
+		</Logger>-->
+
+		<!--<Logger name="java.sql" level="DEBUG" additivity="false">
+			<AppenderRef ref="console"/>
+		</Logger>
+		<Logger name="egovframework" level="DEBUG" additivity="false">
+			<AppenderRef ref="console"/>
+		</Logger>
+
+		<Logger name="org.springframework" level="INFO" additivity="false">
+			<AppenderRef ref="console"/>
+		</Logger>-->
+		<Root level="info">
+			<AppenderRef ref="console"/>
+			<AppenderRef ref="file"/>
+		</Root>
+	</Loggers>
+</Configuration>
