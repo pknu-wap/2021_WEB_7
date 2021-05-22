@@ -92,14 +92,14 @@ public class MainController extends BaseController {
 		List<ProgramVO> programList = null;
 
 		try {
-			programList = mainService.selectMenuList("TEST");
-			request.setAttribute("menuList", programList);
+			//programList = mainService.selectMenuList("TEST");
+			//request.setAttribute("menuList", programList);
 		} catch (BadSqlGrammarException e) {
 			logger.error(Constants.ERROR_SQL, e);
-			programList = new ArrayList<>();
+			//programList = new ArrayList<>();
 		} catch (Exception e) {
 			logger.error(Constants.ERROR_CON, e);
-			programList = new ArrayList<>();
+			//programList = new ArrayList<>();
 		}
 
 		return view;
