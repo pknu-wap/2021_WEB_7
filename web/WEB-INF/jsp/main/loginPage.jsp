@@ -69,76 +69,74 @@ input::placeholder {
 }
 </style>
 <script type="text/javascript">
-	$(document).ready(function () {
-		initPage();
+$(document).ready(function () {
+	initPage();
+});
 
-		$("#btnLogin").click(function () {
-			onLogin();
-		});
+function initPage() {
+	$("#userId").focus();
+
+	$("#userId").on("keydown", function(evt){
+		let $pw = $("#userPw");
+
+		if (evt.keyCode == 13) {
+			$pw.focus();
+		}
 	});
 
-	function initPage() {
-		$("#userId").focus();
-
-		$("#userId").on("keydown", function(evt){
-			if (evt.keyCode == 13) {
-				$pw.focus();
-			}
-		});
-
-		$("#userPw").on("keydown", function(evt){
-			if (evt.keyCode == 13) {
-				onLogin();
-			}
-		});
-
-		$("#btnLogin").on("click", function() {
+	$("#userPw").on("keydown", function(evt){
+		if (evt.keyCode == 13) {
 			onLogin();
-		});
-	}
-
-	function onLogin() {
-		if (!checkValidation()) {
-			return;
 		}
+	});
 
-		var param = {
-			USR_ID : $("#userId").val(),
-			USR_PW : $("#userPw").val()
-		};
+	$("#btnLogin").on("click", function() {
+		onLogin();
+	});
+}
 
-		util.postService("/loginProcess", param, function(result) {
-			console.log("loginProcess", result);
-
-			if (result["USR_OK"]) {
-				$(location).attr("href", "<%=mainPage%>");
-			} else {
-				alert("로그인 정보를 확인하세요");
-				$id.focus();
-				$id.select();
-				$pw.val("");
-			}
-		}, true);
+function onLogin() {
+	if (!checkValidation()) {
+		return;
 	}
 
-	function checkValidation() {
-		var $id = $("#userId");
-		var $pw = $("#userPw");
+	let param = {
+		USR_ID : $("#userId").val(),
+		USR_PW : $("#userPw").val()
+	};
 
-		if ($id.val() === "") {
-			alert("아이디를 입력하세요.");
+	util.postService("/loginProcess", param, function(result) {
+		console.log("loginProcess", result);
+
+		if (result["USR_OK"]) {
+			$(location).attr("href", "<%=mainPage%>");
+		} else {
+			alert("로그인 정보를 확인하세요");
 			$id.focus();
-			return false;
+			$id.select();
+			$pw.val("");
 		}
+	}, true);
+}
 
-		if ($pw.val() === "") {
-			alert("비밀번호를 입력하세요.");
-			$pw.focus();
-			return false;
-		}
+function checkValidation() {
+	let $id = $("#userId");
+	let $pw = $("#userPw");
 
-		return true;
+	if ($id.val() === "") {
+		alert("아이디를 입력하세요.");
+		$id.focus();
+		return false;
 	}
+
+	if ($pw.val() === "") {
+		alert("비밀번호를 입력하세요.");
+		$pw.focus();
+		return false;
+	}
+
+	return true;
+}
 </script>
 </head>
 <body>

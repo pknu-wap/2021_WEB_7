@@ -1,3 +1,8 @@
+if (!window.util) {
+	window.util = {};
+}
+
+
 util.getService = function(url, callbackFunc, async) {
 	if (!_.isBoolean(async)) {
 		async = true;

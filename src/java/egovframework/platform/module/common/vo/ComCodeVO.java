@@ -30,4 +30,8 @@ public class ComCodeVO extends DefaultVO {
 	public ComCodeVO() {
 		super();
 	}
+
+
+
+
 }
